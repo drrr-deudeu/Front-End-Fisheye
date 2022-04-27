@@ -440,6 +440,9 @@ form textarea.text-area{
     min-height: 100px;
   }
 
+  .top-control{
+    min-height: 50px;
+  }
   .arrow-left {
     width: 90px;
     height: 90px;
@@ -479,13 +482,14 @@ form textarea.text-area{
     object-fit: contain;
   }
 
-  .controls-right{
+  .controls-left, .controls-right{
     margin-top: 10px;
     align-self: flex-start;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 250px;
+    justify-content: space-between;
+    min-height: 50%;
   }
   
   .arrow-right {
