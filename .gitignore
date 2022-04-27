@@ -26,4 +26,5 @@ yarn-error.log*
 
 
 # exclude DRR 20220407
-/assets/photographers
+# include DRR 20220427
+# /assets/photographers
