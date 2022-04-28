@@ -1,5 +1,5 @@
 /**
- * Singleton
+ * Singleton: initialise la racine de notre site pour le calcul des liens entre pages
  */
 class BaseURL {
     constructor(){

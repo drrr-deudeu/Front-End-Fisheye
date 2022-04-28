@@ -68,7 +68,7 @@ function clearInputFields(inputs){
 }
 
 /**
- * le onsubmit du formulaire
+ * Initialisation de la fonction de traitement de l'évènement onsubmit du formulaire de contact
  */
 function contactEventControl() {
     document.querySelector('form').addEventListener('submit',e => {

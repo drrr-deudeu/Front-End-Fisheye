@@ -5,6 +5,7 @@
 // Ici on ne gère que le tri de nos medias
 
 /**
+ * Gestionnaire de la boite de sélection du choix d'ordonnancement des médias.
  * 
  * @param {*} medias : la liste des medias
  */

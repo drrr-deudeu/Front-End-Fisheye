@@ -14,6 +14,11 @@
         return ({photographers: photographers})
     }
 
+    /**
+     * 
+     * @param {*} photographers 
+     * La collection de photographes
+     */
     async function displayData(photographers) {
         const photographersSection = document.querySelector(".photographer_section");
 
@@ -23,6 +28,10 @@
         });
     };
 
+    /**
+     * Fonction d'initialisation.
+     * Affichage des vignettes et des évènements qui y sont liés
+     */
     async function init() {
         // Récupère et traite les datas des photographes
         const { photographers } = await getPhotographers();
@@ -30,5 +39,8 @@
         displayData(photographers);
     };
     
+    /**
+     * index.html : Première fonction appelée
+     */
     init();
     

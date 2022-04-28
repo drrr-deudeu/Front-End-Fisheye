@@ -1,4 +1,6 @@
-
+/**
+ * Classe gestionnaire des compteurs de likes
+ */
 class LikesCounter{
     /**
      * 
@@ -13,7 +15,12 @@ class LikesCounter{
         this._countTotal = new TotalLikes
         this._countTotal.incr(likes)
     }
-
+    /**
+     * Fonction d'incrémentation du nombre de likes pour ce média.
+     * Met à jour le compteur total du photographe
+     * @param {*} incr 
+     * L'incrément est un entier relatif
+     */
     update(incr=1) {
         this._count += incr
         this._countTotal.incr(incr)
@@ -21,7 +28,10 @@ class LikesCounter{
         const likesCountSpan = document.querySelector('#likes-number-'+this._id)
         likesCountSpan.innerHTML = this._count
     }
-
+    /**
+     * @returns {count} 
+     * Nombre de likes pour ce média
+     */
     get count(){
         return this._count
     }
@@ -62,6 +72,11 @@ function mediaFactory(data,totalLikes,photografName) {
         element.insertAdjacentHTML('beforeend', insertHeartHtml);
     }
 
+    /**
+     * 
+     * @returns {article}
+     * L'élément HTML et ses enfants
+     */
     function getUserCardDOM() {
         // si la vignette est déjà construite on renvoie la section HTML qu'on a déjà calculée
         if(sectionHTML !== ""){

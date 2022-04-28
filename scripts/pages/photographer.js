@@ -1,7 +1,12 @@
 /**
- * 
+ * Cette fonction lit et renvoie les données concernant le photographe "id", 
+ * ainsi que la liste de ses médias, et son compteur de "likes"
+ *
  * @param {*} id : id du photograph
- * @returns 
+ * @returns {[photograph, medias, totalLikes]}
+ * photographer: le photographe (Cf. photographerFactory)
+ * medias: type array. le tableau des medias (Cf. mediaFactory)
+ * totalLikes: le gestionnaire de la div "likes" et prix par jour
  */
 async function getPhotographerAndMedias(id) {
     const photographersApi = new PhotographersApi(BaseURL.base+"data/photographers.json")
@@ -20,15 +25,26 @@ async function getPhotographerAndMedias(id) {
     return [photographers[0],medias, totalLikes]
 }
 
+/**
+ * Génère et place la div header header contenant les informations générales concernant le photographe dans le document
+ * @param {*} photograph
+ * le photographe 
+ */
 async function displayHeader(photograph) {
     const photographSection = document.querySelector(".opacity-if-modale");
-    //const photographSection = document.querySelector(".photograph-header");
     const userCardDOM = photograph.getUserCardDOM(true);
-    // photographSection.insertBefore(userCardDOM,document.querySelector(".filter"));
     photographSection.prepend(userCardDOM);
 
 };
 
+/**
+ * Insère les élèments HTML permettant la visualisation des médias dans le document
+ * et initialise le caroussel sans l'afficher
+ * @param {*} photograph 
+ * le photographe
+ * @param {*} medias
+ * ses médias
+ */
 async function displayMedias(photograph,medias){
     const mediasSection = document.querySelector(".medias_section")
     mediasList = new MediasList(medias)
@@ -39,21 +55,33 @@ async function displayMedias(photograph,medias){
     }); 
     mediasList.CarousselRender()    
 }
+
+/**
+ * Insère l'élément HTML contenant les likes et le prix par jour
+ * @param {*} totalLikes 
+ * Le gestionnaire de likes
+ */
 async function displayTotalLikes(totalLikes){
     totalLikes.UserDivDOM()
 }
 
+/**
+ * Initialise l'URL permettant de revenir à la liste des photographes. 
+ */
 function LogoAddLinkToHome(){
     const headerElement = document.querySelector(".link-to-home")
     headerElement.setAttribute('href',BaseURL.base)    
 }
 
+/**
+ * Fonction d'inialisation de l'application et des fonction d'évènements
+ */
 async function init(){
     // BaseURL singleton allows to have a "relatif" or "absolute" site URL
     new BaseURL
 
     LogoAddLinkToHome()
-    // Get the photograph from URL
+    // Get the photograph id from URL
     let params = (new URL(document.location)).searchParams;
     let photographerID = parseInt(params.get('id'))
     if( isNaN(photographerID) ){
@@ -73,4 +101,7 @@ async function init(){
     contactEventControl()
 }
 
+/**
+ * photographer.html : Première fonction appelée
+ */
 init()

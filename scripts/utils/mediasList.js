@@ -5,9 +5,12 @@
 class MediasList {
     /**
      * 
-     * @param {*} mediasList : liste des medias
-     * @param {*} tri : tri, par défaut "Popularité" (descendant)
-     * @returns 
+     * @param {*} mediasList 
+     * liste des medias
+     * @param {*} tri 
+     * tri, par défaut "Popularité" (descendant)
+     * @returns {this} 
+     * L'instance unique du gestionnaire des médias
      */
     constructor(mediasList,tri = "Popularité"){
         if (MediasList.exists) {
@@ -25,8 +28,11 @@ class MediasList {
 
     /**
      * Le tri des medias
-     * @param {*} tri 
-     * @returns 
+     * @param {string} 
+     * tri souhaité ("Popularité","Date" ou "Titre")
+     * Les tris sont descendants, sauf "Titre"
+     * @returns {mediasList}
+     * La liste ordonnée des medias
      */
     sort(tri){
         switch(tri){
@@ -51,6 +57,8 @@ class MediasList {
 
     /**
      * le tableau des medias
+     * @returns {mediasList} 
+     * La liste ordonnée des medias
      */
     get mediasList(){
         return this._mediasList
@@ -71,7 +79,6 @@ class MediasList {
     /**
      * Tri + rendu
      * @param {*} tri 
-     * @returns 
      */
     sortAndRender(tri){
         if(this._tri === tri){
@@ -124,7 +131,8 @@ class MediasList {
     }
 
     /**
-     * 
+     * Cette fonction initialise le caroussel et l'évènement gestionnaire des touches du clavier dans le caroussel
+     * Flèche gauche, droite et haut, et escape. Les touches par défaut, Tab, Shit-Tab et Return restent opérationnelles.
      * @param {*} i : index dans le tableau des medias
      */
     CarousselRender(i=0){
@@ -177,13 +185,18 @@ class MediasList {
     }
 
     /**
-     * @returns
+     * @returns {indexMedia}
+     * index du media dans le caroussel
      */
     get indexMedia(){
         return this._indexMedia
     }
 }
 
+/**
+ * Close le caroussel et revient à la page principale, 
+ * et fait le focus sur le media qui était affiché dans le caroussel
+ */
 function closeCaroussel(){
     // les éléments qui doivent être à nouveau visible (donc navigables)
     document.querySelector(".medias_caroussel").classList.toggle("visible")

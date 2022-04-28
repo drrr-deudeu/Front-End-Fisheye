@@ -1,7 +1,12 @@
 /**
  * 
  * @param {*} data du photographe
- * @returns 
+ * @returns {{ id, name, picture, price, getUserCardDOM }}
+ * id : id du photographe
+ * nom: nom du p.
+ * picture: portrait du p.
+ * price: prix par jour du p.
+ * getUserCardDOM: fonction de rendu du p.
  */
 function photographerFactory(data) {
     
@@ -24,7 +29,7 @@ function photographerFactory(data) {
     }
     /**
      * 
-     * @param {*} level : niveau de titre 
+     * @param {*} level : Nombre, niveau du titre (de 1 à 6)
      * @returns {hlevel} : élément titre avec le nom du photographe
      */
     function getName(level=2){
@@ -34,6 +39,11 @@ function photographerFactory(data) {
         return hlevel
     }
 
+    /**
+     * 
+     * @returns {HTMLelement}
+     * l'élément HTML Ville, Pays
+     */
     function getCityCountry(){
         /* City, Country */
         const pcitycountry = document.createElement( 'h2' );
@@ -42,6 +52,11 @@ function photographerFactory(data) {
         return pcitycountry
     }
 
+    /**
+     * 
+     * @returns {HTMLelement}
+     * La devise du photographe
+     */
     function getSlogan(){
         /* Slogan */
         const ptagline = document.createElement( 'p' );        
@@ -50,6 +65,11 @@ function photographerFactory(data) {
         return ptagline
     }
 
+    /**
+     * 
+     * @returns {HTMLelement}
+     * Le prix par jour
+     */
     function getPrice(){
         const pprice = document.createElement('p')
         pprice.textContent = price + "€/jour"
@@ -67,7 +87,7 @@ function photographerFactory(data) {
     /**
      * 
      * @param {*} param0 
-     * @returns {article} : l'article pour le header du photographe
+     * @returns {article} : l'article pour le header du photographe (photographer.html)
      */
     function getUniqPhotograph({article,img,hname,citycountry,slogan}){
         // les champs du header
